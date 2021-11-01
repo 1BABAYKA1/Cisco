@@ -1,0 +1,24 @@
+интерфейс раздающий WiFi должен иметь одинаковый с Vlan 1 адрес IP. Для чего им надо разрешить использовать один и тот же IP адрес, выданный для Vlan 1
+
+Router(config)#int wlan-ap 0
+Router(config-if)#ip unnumbered vlan 1
+
+R1#service-module wlan-ap 0 session
+
+ap>en 7
+ap#conf t
+Enter configuration commands, one per line. End with CNTL / Z.
+ap(config)#dot11 ssid WI-FI_R1
+ap(config-ssid)#auth open
+ap(config-ssid)#auth key-management wpa
+ap(config-ssid)#wpa-psk ascii 0 MyWiFiR1
+ap(config-ssid)#guest-mode
+ap(config-ssid)#exit
+ap(config)#interface Dot11Radio0
+ap(config-if)#no ip address
+ap(config-if)#encryption mode ciphers aes-ccm
+ap(config-if)#ssid WI-FI_R1
+ap(config-if)#no shutdown
+
+
+
