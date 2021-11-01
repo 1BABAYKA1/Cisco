@@ -1,0 +1,19 @@
+router ospf 100
+network 192.213.0.0 0.0.255.255 area 0.0.0.0
+network 128.213.1.1 0.0.0.0 area 23
+
+ Для включения аутентификации на основе пароля используются следующие команды:
+ip ospf authentication-key key (для конкретного интерфейса)
+area area-id authentication (для команды "router ospf <process-id>")
+
+
+конфигурация OSPF для обоих маршрутизаторов будет иметь следующий вид:
+
+RTA#
+router ospf 10
+area 2 virtual-link 2.2.2.2
+
+
+RTB#
+router ospf 10
+area 2 virtual-link 1.1.1.1
