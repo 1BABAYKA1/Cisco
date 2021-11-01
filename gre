@@ -1,0 +1,20 @@
+GRE – Сетевой протокол от компании CISCO Systems для туннелирования соединений, путем инкапсуляции пакетов сетевого уровня в IP пакеты.
+С помощью протокола GRE создается непрерывное соединение между двумя узлами (маршрутизаторами), через общедоступную сеть.
+
+Первым шагом является создание нашего туннельного интерфейса на R1:
+
+R1(config)# interface Tunnel0
+R1(config-if)# ip address 172.16.0.1 255.255.255.0
+R1(config-if)# ip mtu 1400
+R1(config-if)# ip tcp adjust-mss 1360
+R1(config-if)# tunnel source 1.1.1.10
+R1(config-if)# tunnel destination 2.2.2.10
+
+Далее мы должны создать интерфейс Tunnel 0 на R2:
+
+R2(config)# interface Tunnel0
+R2(config-if)# ip address 172.16.0.2 255.255.255.0
+R2(config-if)# ip mtu 1400
+R2(config-if)# ip tcp adjust-mss 1360
+R2(config-if)# tunnel source 2.2.2.10
+R2(config-if)# tunnel destination 1.1.1.10
