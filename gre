@@ -18,3 +18,17 @@ R2(config-if)# ip mtu 1400
 R2(config-if)# ip tcp adjust-mss 1360
 R2(config-if)# tunnel source 2.2.2.10
 R2(config-if)# tunnel destination 1.1.1.10
+
+
+interface Tunnel1
+ ip address 10.0.1.1 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/1/0
+ tunnel destination 2.2.2.2
+!
+!
+interface Tunnel3
+ ip address 10.0.3.2 255.255.255.252
+ mtu 1476
+ tunnel source GigabitEthernet0/1/0
+ tunnel destination 3.3.3.2
