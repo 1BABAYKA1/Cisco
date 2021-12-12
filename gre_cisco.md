@@ -30,15 +30,6 @@
 | `tunnel destination`  | Set tunnel destination address  |
 | `do copy r s`  | Save configuration |
 
-### Test GRE Tunnels connectivity 
-
-| R1 | R2 | R3 |
-| ------------- | ------------- | ------------- |
-|![gre 1](/../addons/gre_r1_suc.png) | ![gre r2](/../addons/gre_r2_suc.png)| ![gre r3](/../addons/gre_r3_suc.png)|
 
 
-### Config files for routers
 
-- [R1](/../addons/R1.md)
-- [R2](/../addons/R2.md)
-- [R3](/../addons/R3.md)
