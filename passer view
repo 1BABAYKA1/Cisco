@@ -1,0 +1,50 @@
+BR3#enable view
+Password: 
+BR3#%PARSER-6-VIEW_SWITCH: successfully set to view 'root'.
+
+
+BR3#show parser view
+Current view is 'root'
+BR3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BR3(config)#parser view show_view
+BR3(config-view)#%PARSER-6-VIEW_CREATED: view 'show_view' successfully created.
+
+
+BR3(config-view)#commands exec include show version
+% Password not set for the view show_view
+BR3(config-view)#secret cisco
+BR3(config-view)#commands exec include show version
+BR3(config-view)#commands exec include show ip*
+BR3(config-view)#commands exec include who
+BR3(config-view)#exit
+BR3(config)#parser view ping_view
+BR3(config-view)#%PARSER-6-VIEW_CREATED: view 'ping_view' successfully created.
+
+
+BR3(config-view)#secret cisco
+BR3(config-view)#commands exec include ping
+BR3(config-view)#commands exec include traceroute
+BR3(config-view)#exit
+BR3(config)#parser view superview
+BR3(config-view)#%PARSER-6-VIEW_CREATED: view 'superview' successfully created.
+
+
+BR3(config-view)#secret cisco
+BR3(config-view)#parser view superview
+BR3(config-view)#commands exec include traceroute
+BR3(config-view)#commands exec include ping
+BR3(config-view)#commands exec include who
+BR3(config-view)#commands exec include show ip*
+BR3(config-view)#commands exec include show version
+BR3(config-view)#exit
+BR3(config)#username user2 view superview secret cisco
+                           ^
+% Invalid input detected at '^' marker.
+	
+BR3(config)#no user user2
+BR3(config)#username user2 view superview secret cisco
+                           ^
+% Invalid input detected at '^' marker.
+	
+BR3(config)#
